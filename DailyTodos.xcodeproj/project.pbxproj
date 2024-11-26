@@ -9,19 +9,29 @@
 /* Begin PBXBuildFile section */
 		2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0090B2CF600800073CE79 /* AppDelegate.swift */; };
 		2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0090D2CF600800073CE79 /* SceneDelegate.swift */; };
-		2DA009102CF600800073CE79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0090F2CF600800073CE79 /* ViewController.swift */; };
+		2DA009102CF600800073CE79 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0090F2CF600800073CE79 /* TaskListView.swift */; };
 		2DA009152CF600810073CE79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DA009142CF600810073CE79 /* Assets.xcassets */; };
 		2DA009182CF600810073CE79 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2DA009172CF600810073CE79 /* Base */; };
+		2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009202CF61E430073CE79 /* TaskListPresenter.swift */; };
+		2DA009232CF61E500073CE79 /* TaskListInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009222CF61E500073CE79 /* TaskListInterractor.swift */; };
+		2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */; };
+		2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009262CF620140073CE79 /* UIView + Extension.swift */; };
+		2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2DA009082CF600800073CE79 /* DailyTodos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTodos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA0090B2CF600800073CE79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DA0090D2CF600800073CE79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2DA0090F2CF600800073CE79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2DA0090F2CF600800073CE79 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		2DA009142CF600810073CE79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DA009172CF600810073CE79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DA009192CF600810073CE79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DA009202CF61E430073CE79 /* TaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListPresenter.swift; sourceTree = "<group>"; };
+		2DA009222CF61E500073CE79 /* TaskListInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListInterractor.swift; sourceTree = "<group>"; };
+		2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListRouter.swift; sourceTree = "<group>"; };
+		2DA009262CF620140073CE79 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +66,33 @@
 			children = (
 				2DA0090B2CF600800073CE79 /* AppDelegate.swift */,
 				2DA0090D2CF600800073CE79 /* SceneDelegate.swift */,
-				2DA0090F2CF600800073CE79 /* ViewController.swift */,
+				2DA009282CF620360073CE79 /* Extensions */,
+				2DA0091F2CF61E280073CE79 /* TaskListModule */,
 				2DA009142CF600810073CE79 /* Assets.xcassets */,
 				2DA009162CF600810073CE79 /* LaunchScreen.storyboard */,
 				2DA009192CF600810073CE79 /* Info.plist */,
 			);
 			path = DailyTodos;
+			sourceTree = "<group>";
+		};
+		2DA0091F2CF61E280073CE79 /* TaskListModule */ = {
+			isa = PBXGroup;
+			children = (
+				2DA0090F2CF600800073CE79 /* TaskListView.swift */,
+				2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */,
+				2DA009202CF61E430073CE79 /* TaskListPresenter.swift */,
+				2DA009222CF61E500073CE79 /* TaskListInterractor.swift */,
+				2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */,
+			);
+			path = TaskListModule;
+			sourceTree = "<group>";
+		};
+		2DA009282CF620360073CE79 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2DA009262CF620140073CE79 /* UIView + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +165,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DA009102CF600800073CE79 /* ViewController.swift in Sources */,
+				2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */,
+				2DA009102CF600800073CE79 /* TaskListView.swift in Sources */,
+				2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */,
+				2DA009232CF61E500073CE79 /* TaskListInterractor.swift in Sources */,
+				2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */,
 				2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */,
 				2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */,
+				2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
