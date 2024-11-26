@@ -20,10 +20,11 @@ final class TaskListView: UIViewController {
     private let searchButton = UIButton()
     private let voiceButton = UIButton()
     private let leftContainerView = UIView()
+    private let rightContainerView = UIView()
     
-    private var taskCounter: Int = 0 {
+    private var todoListArray: [String] = [] {
         didSet {
-            footerLabel.text = "\(taskCounter) Задач"
+            footerLabel.text = "\(todoListArray.count) Tasks"
         }
     }
     
@@ -41,6 +42,7 @@ final class TaskListView: UIViewController {
     private func addSubviews() {
         view.addSubviews(headerLabel, taskCountLabel, searchTextField, tasksTableView, footerView)
         leftContainerView.addSubview(searchButton)
+        rightContainerView.addSubview(voiceButton)
         footerView.addSubview(footerLabel)
     }
     
@@ -69,9 +71,17 @@ final class TaskListView: UIViewController {
         leftContainerView.heightAnchor.constraint(equalToConstant: 36).isActive = true
         leftContainerView.widthAnchor.constraint(equalToConstant: 29).isActive = true
         
+        rightContainerView.translatesAutoresizingMaskIntoConstraints = false
+        rightContainerView.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        rightContainerView.widthAnchor.constraint(equalToConstant: 29).isActive = true
+        
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.centerYAnchor.constraint(equalTo: leftContainerView.centerYAnchor).isActive = true
         searchButton.centerXAnchor.constraint(equalTo: leftContainerView.centerXAnchor, constant: 6).isActive = true
+        
+        voiceButton.translatesAutoresizingMaskIntoConstraints = false
+        voiceButton.centerYAnchor.constraint(equalTo: rightContainerView.centerYAnchor).isActive = true
+        voiceButton.centerXAnchor.constraint(equalTo: rightContainerView.centerXAnchor, constant: -6).isActive = true
         
         footerView.translatesAutoresizingMaskIntoConstraints = false
         footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -97,11 +107,14 @@ final class TaskListView: UIViewController {
         headerLabel.textColor = UIColor.lightGrayText
         headerLabel.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         headerLabel.textAlignment = .left
-        headerLabel.text = "Задачи"
+        headerLabel.text = "Tasks"
         
         searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         searchButton.tintColor = UIColor.darkGrayText
         searchButton.isEnabled = false
+        
+        voiceButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
+        voiceButton.tintColor = UIColor.darkGrayText
         
         searchTextField.backgroundColor = UIColor.frameFill
         searchTextField.borderStyle = .roundedRect
@@ -109,6 +122,8 @@ final class TaskListView: UIViewController {
         searchTextField.textColor = UIColor.lightGrayText
         searchTextField.leftView = leftContainerView
         searchTextField.leftViewMode = .always
+        searchTextField.rightView = rightContainerView
+        searchTextField.rightViewMode = .always
         let placeholderColor = UIColor.darkGrayText
         searchTextField.attributedPlaceholder = NSAttributedString(
             string: "Search",
@@ -120,7 +135,7 @@ final class TaskListView: UIViewController {
         footerLabel.textColor = UIColor.lightGrayText
         footerLabel.font = UIFont.systemFont(ofSize: 11, weight: .regular)
         footerLabel.textAlignment = .center
-        footerLabel.text = "\(taskCounter) Задач"
+        footerLabel.text = "\(todoListArray.count) Tasks"
         
         tasksTableView.backgroundColor = UIColor.clear
         tasksTableView.rowHeight = 106
@@ -129,12 +144,23 @@ final class TaskListView: UIViewController {
     //MARK: - Add targets
     private func addTargets() {
         searchButton.addTarget(self, action: #selector(serchButtonTaped), for: .touchUpInside)
+        voiceButton.addTarget(self, action: #selector(voiceButtonTaped), for: .touchUpInside)
         searchTextField.addTarget(self, action: #selector(textEditing), for: .editingChanged)
     }
     
     //MARK: - Buttons API
     @objc private func serchButtonTaped() {
         
+    }
+    
+    @objc private func voiceButtonTaped() {
+        //the voiсe logic may be here
+        voiceButton.isSelected.toggle()
+        if voiceButton.isSelected {
+            voiceButton.tintColor = UIColor.lightGrayText
+        } else {
+            voiceButton.tintColor = UIColor.darkGray
+        }
     }
     
     @objc private func textEditing() {
@@ -160,6 +186,9 @@ extension TaskListView: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tasksTableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as? TaskTableViewCell else { return UITableViewCell() }
         
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        
+        cell.setData(with: 1, "Some descripion \nof Task", 38, false)
         return cell
     }
 }
