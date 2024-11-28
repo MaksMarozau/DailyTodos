@@ -17,6 +17,12 @@
 		2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */; };
 		2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009262CF620140073CE79 /* UIView + Extension.swift */; };
 		2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */; };
+		2DA0092C2CF87E290073CE79 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0092B2CF87E290073CE79 /* TodoModel.swift */; };
+		2DA009302CF87EB90073CE79 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0092F2CF87EB90073CE79 /* NetworkService.swift */; };
+		2DA009322CF8809D0073CE79 /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009312CF8809D0073CE79 /* ErrorService.swift */; };
+		2DA009342CF883EE0073CE79 /* ParcingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009332CF883EE0073CE79 /* ParcingService.swift */; };
+		2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */; };
+		2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListRouter.swift; sourceTree = "<group>"; };
 		2DA009262CF620140073CE79 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		2DA0092B2CF87E290073CE79 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		2DA0092F2CF87EB90073CE79 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		2DA009312CF8809D0073CE79 /* ErrorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorService.swift; sourceTree = "<group>"; };
+		2DA009332CF883EE0073CE79 /* ParcingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcingService.swift; sourceTree = "<group>"; };
+		2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +80,9 @@
 				2DA0090D2CF600800073CE79 /* SceneDelegate.swift */,
 				2DA009282CF620360073CE79 /* Extensions */,
 				2DA0091F2CF61E280073CE79 /* TaskListModule */,
+				2DA0092D2CF87E8F0073CE79 /* Models */,
 				2DA009142CF600810073CE79 /* Assets.xcassets */,
+				2DA0092E2CF87E9F0073CE79 /* Service */,
 				2DA009162CF600810073CE79 /* LaunchScreen.storyboard */,
 				2DA009192CF600810073CE79 /* Info.plist */,
 			);
@@ -78,8 +92,7 @@
 		2DA0091F2CF61E280073CE79 /* TaskListModule */ = {
 			isa = PBXGroup;
 			children = (
-				2DA0090F2CF600800073CE79 /* TaskListView.swift */,
-				2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */,
+				2DA009352CF893220073CE79 /* TaskListView */,
 				2DA009202CF61E430073CE79 /* TaskListPresenter.swift */,
 				2DA009222CF61E500073CE79 /* TaskListInterractor.swift */,
 				2DA009242CF61E5C0073CE79 /* TaskListRouter.swift */,
@@ -93,6 +106,35 @@
 				2DA009262CF620140073CE79 /* UIView + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2DA0092D2CF87E8F0073CE79 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2DA0092B2CF87E290073CE79 /* TodoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2DA0092E2CF87E9F0073CE79 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2DA0092F2CF87EB90073CE79 /* NetworkService.swift */,
+				2DA009332CF883EE0073CE79 /* ParcingService.swift */,
+				2DA009312CF8809D0073CE79 /* ErrorService.swift */,
+				2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */,
+				2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2DA009352CF893220073CE79 /* TaskListView */ = {
+			isa = PBXGroup;
+			children = (
+				2DA0090F2CF600800073CE79 /* TaskListView.swift */,
+				2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */,
+			);
+			path = TaskListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,14 +207,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DA009302CF87EB90073CE79 /* NetworkService.swift in Sources */,
+				2DA0092C2CF87E290073CE79 /* TodoModel.swift in Sources */,
 				2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */,
+				2DA009322CF8809D0073CE79 /* ErrorService.swift in Sources */,
 				2DA009102CF600800073CE79 /* TaskListView.swift in Sources */,
 				2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */,
 				2DA009232CF61E500073CE79 /* TaskListInterractor.swift in Sources */,
 				2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */,
+				2DA009342CF883EE0073CE79 /* ParcingService.swift in Sources */,
 				2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */,
 				2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */,
+				2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */,
 				2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */,
+				2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

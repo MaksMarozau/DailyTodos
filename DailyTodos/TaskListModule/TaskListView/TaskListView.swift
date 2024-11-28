@@ -7,6 +7,16 @@
 
 import UIKit
 
+protocol TaskListViewInputProtocol: AnyObject {
+    func showTodos(_ todos: [TodoResult.Todo])
+    func showError(_ error: Error)
+}
+
+protocol TaskListViewOutputProtocol: AnyObject {
+    func loadData() async
+}
+
+
 //MARK: - TaskListView
 final class TaskListView: UIViewController {
 
@@ -21,12 +31,10 @@ final class TaskListView: UIViewController {
     private let voiceButton = UIButton()
     private let leftContainerView = UIView()
     private let rightContainerView = UIView()
+    private let loadingIndicator = UIActivityIndicatorView()
     
-    private var todoListArray: [String] = [] {
-        didSet {
-            footerLabel.text = "\(todoListArray.count) Tasks"
-        }
-    }
+    private var todoListArray: [TodoResult.Todo] = []
+    var presenter: TaskListViewOutputProtocol?
     
     //MARK: - Lifecicle
     override func viewDidLoad() {
@@ -37,10 +45,20 @@ final class TaskListView: UIViewController {
         setupUI()
         addTargets()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        start()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadIndicatorAction()
+    }
 
     //MARK: - Add subviews
     private func addSubviews() {
-        view.addSubviews(headerLabel, taskCountLabel, searchTextField, tasksTableView, footerView)
+        view.addSubviews(headerLabel, taskCountLabel, searchTextField, tasksTableView, footerView, loadingIndicator)
         leftContainerView.addSubview(searchButton)
         rightContainerView.addSubview(voiceButton)
         footerView.addSubview(footerLabel)
@@ -98,6 +116,12 @@ final class TaskListView: UIViewController {
         tasksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tasksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tasksTableView.bottomAnchor.constraint(equalTo: footerView.topAnchor).isActive = true
+        
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loadingIndicator.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        loadingIndicator.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     //MARK: - Setup views UI
@@ -139,6 +163,10 @@ final class TaskListView: UIViewController {
         
         tasksTableView.backgroundColor = UIColor.clear
         tasksTableView.rowHeight = 106
+        
+        loadingIndicator.style = .large
+        loadingIndicator.color = UIColor.lightGrayText
+        loadingIndicator.hidesWhenStopped = true
     }
     
     //MARK: - Add targets
@@ -172,23 +200,73 @@ final class TaskListView: UIViewController {
             searchButton.tintColor = UIColor.lightGrayText
         }
     }
+    
+    //MARK: - Output
+    private func start() {
+        Task {
+            await presenter?.loadData()
+        }
+    }
+    
+    //MARK: - Animation
+    private func loadIndicatorAction() {
+        loadingIndicator.startAnimating()
+    }
 }
 
 
+//MARK: - TableView's delegate and data source implemendation
 extension TaskListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return todoListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let todo = todoListArray[indexPath.row]
+        let todoID = todo.id
+        let description = todo.todo
+        let userId = todo.userId
+        let status = todo.completed
         
         guard let cell = tasksTableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as? TaskTableViewCell else { return UITableViewCell() }
         
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         
-        cell.setData(with: 1, "Some descripion \nof Task", 38, false)
+        cell.setData(with: todoID, description, userId, status)
         return cell
     }
+}
+
+
+//MARK: - Input protocol implemendation
+extension TaskListView: TaskListViewInputProtocol {
+    func showTodos(_ todos: [TodoResult.Todo]) {
+        todoListArray = todos
+        
+        DispatchQueue.main.async {
+            self.footerLabel.text = "\(self.todoListArray.count) Tasks"
+            self.tasksTableView.reloadData()
+            self.loadingIndicator.stopAnimating()
+        }
+    }
+    
+    func showError(_ error: any Error) {
+        let currentError = error as? ErrorService
+        switch currentError {
+        case .badURL:
+            print("Bad URL")
+        case .badRequest:
+            print("Bad Request")
+        case .badResponce:
+            print("Bad Responce")
+        case .invalidData:
+            print("No Data")
+        case .none:
+            break
+        }
+    }
+    
+    
 }
