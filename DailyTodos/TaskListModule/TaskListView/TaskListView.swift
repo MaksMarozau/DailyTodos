@@ -253,7 +253,7 @@ extension TaskListView: TaskListViewInputProtocol {
     }
     
     func showError(_ error: any Error) {
-        let currentError = error as? ErrorService
+        let currentError = error as? NetworkErrorService
         switch currentError {
         case .badURL:
             print("Bad URL")

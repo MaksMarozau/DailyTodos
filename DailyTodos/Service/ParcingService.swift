@@ -21,7 +21,7 @@ final class ParcingService {
             return result
         } catch {
             print("Error during decoding: \(error)")
-            throw ErrorService.invalidData
+            throw NetworkErrorService.invalidData
         }
     }
 }

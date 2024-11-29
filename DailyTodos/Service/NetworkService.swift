@@ -26,18 +26,18 @@ final class NetworkService {
     
     func fetchData() async throws -> Data {
         guard let url = createURL() else {
-            throw ErrorService.badURL
+            throw NetworkErrorService.badURL
         }
         
         do {
             let (data, responce) = try await URLSession.shared.data(from: url)
             guard let httpResponce = responce as? HTTPURLResponse, (200...299).contains(httpResponce.statusCode) else {
-                throw ErrorService.badResponce
+                throw NetworkErrorService.badResponce
             }
             return data
             
         } catch {
-            throw ErrorService.badRequest
+            throw NetworkErrorService.badRequest
         }
     }
 }
