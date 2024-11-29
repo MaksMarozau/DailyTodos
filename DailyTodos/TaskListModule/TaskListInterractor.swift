@@ -9,20 +9,28 @@ import Foundation
 
 protocol TaskListInterractorInputProtocol: AnyObject {
     func getTodos() async
+    func filterData(by keyWords: String)
 }
 
 protocol TaskListInterractorOutputProtocol: AnyObject {
     func didFetchTodos(with todos: [TodoResult.Todo])
     func didFailedToFetchTodos(with error: Error)
+    func didFiltredTodos(with todos: [TodoResult.Todo])
 }
 
-final class TaskListInterractor: TaskListInterractorInputProtocol {
+//MARK: - TaskList interractor
+final class TaskListInterractor {
     
+    //MARK: - Properties of class
     weak var presenter: TaskListInterractorOutputProtocol?
-
+    
     private let networkService = NetworkService.shared
     private let parcingService = ParcingService.shared
+    private var todosOriginArray: [TodoResult.Todo] = []
     
+    
+    //MARK: - Private methods
+    //Network methods
     private func fetchData() async throws -> Data {
         let data = try await networkService.fetchData()
         return data
@@ -33,6 +41,7 @@ final class TaskListInterractor: TaskListInterractorInputProtocol {
         return todosResul.todos
     }
     
+    //Data base methods
     private func saveTaskList(tasksArray: [TodoResult.Todo]) throws {
         try tasksArray.forEach { todo in
             let id = todo.id
@@ -62,6 +71,7 @@ final class TaskListInterractor: TaskListInterractorInputProtocol {
         }
     }
     
+    //Other methods
     private func convertData(from data: TodoEntity) -> TodoResult.Todo {
         let todo = TodoResult.Todo(
             id: Int(data.todoID),
@@ -70,6 +80,21 @@ final class TaskListInterractor: TaskListInterractorInputProtocol {
             userId: Int(data.userID))
         return todo
     }
+}
+
+
+extension TaskListInterractor: TaskListInterractorInputProtocol {
+    func filterData(by keyWords: String) {
+        var filtredTasksArray: [TodoResult.Todo] = []
+        if keyWords.isEmpty {
+            filtredTasksArray = todosOriginArray
+        } else {
+            filtredTasksArray = todosOriginArray.filter( {$0.todo.lowercased().contains(keyWords.lowercased())} )
+        }
+        
+        presenter?.didFiltredTodos(with: filtredTasksArray)
+    }
+    
     
     func getTodos() async {
         let appInitStatus = UserDefaultsService.shared.isFirstStart
@@ -79,6 +104,7 @@ final class TaskListInterractor: TaskListInterractorInputProtocol {
                 let data = try await fetchData()
                 let result = try decodeData(data)
                 try saveTaskList(tasksArray: result)
+                todosOriginArray = result
                 
                 UserDefaultsService.shared.isFirstStart = false
                 presenter?.didFetchTodos(with: result)
@@ -89,8 +115,8 @@ final class TaskListInterractor: TaskListInterractorInputProtocol {
             }
         } else {
             do {
-                let todoArray = try loadTaskList()
-                presenter?.didFetchTodos(with: todoArray)
+                todosOriginArray = try loadTaskList()
+                presenter?.didFetchTodos(with: todosOriginArray)
             } catch {
                 presenter?.didFailedToFetchTodos(with: error)
             }

@@ -14,6 +14,7 @@ protocol TaskListViewInputProtocol: AnyObject {
 
 protocol TaskListViewOutputProtocol: AnyObject {
     func loadData() async
+    func filterData(by keyWords: String)
 }
 
 
@@ -178,7 +179,8 @@ final class TaskListView: UIViewController {
     
     //MARK: - Buttons API
     @objc private func serchButtonTaped() {
-        
+        searchTextField.text = ""
+        presenter?.filterData(by: "")
     }
     
     @objc private func voiceButtonTaped() {
@@ -199,6 +201,8 @@ final class TaskListView: UIViewController {
             searchButton.isEnabled = true
             searchButton.tintColor = UIColor.lightGrayText
         }
+        let keyWords: String = searchTextField.text ?? ""
+        presenter?.filterData(by: keyWords)
     }
     
     //MARK: - Output

@@ -24,6 +24,10 @@ final class TaskListPresenter {
 
 
 extension TaskListPresenter: TaskListViewOutputProtocol {
+    func filterData(by keyWords: String) {
+        interractor.filterData(by: keyWords)
+    }
+    
     func loadData() async {
         await interractor.getTodos()
     }
@@ -31,6 +35,10 @@ extension TaskListPresenter: TaskListViewOutputProtocol {
 
 
 extension TaskListPresenter: TaskListInterractorOutputProtocol {
+    func didFiltredTodos(with todos: [TodoResult.Todo]) {
+        view?.showTodos(todos)
+    }
+    
     func didFetchTodos(with todos: [TodoResult.Todo]) {
         view?.showTodos(todos)
     }
