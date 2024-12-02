@@ -24,6 +24,10 @@ final class TaskListPresenter {
 
 
 extension TaskListPresenter: TaskListViewOutputProtocol {
+    func addNewTask(with taskId: Int) {
+        router.openNewTaskScreen(with: taskId)
+    }
+    
     func filterData(by keyWords: String) {
         interractor.filterData(by: keyWords)
     }

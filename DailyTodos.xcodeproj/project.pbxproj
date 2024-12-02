@@ -24,6 +24,10 @@
 		2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */; };
 		2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */; };
 		2DA0093C2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0093A2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld */; };
+		2DA0093F2CFDCF9A0073CE79 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */; };
+		2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */; };
+		2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */; };
+		2DA009452CFDCFCF0073CE79 /* NewTaskInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveService.swift; sourceTree = "<group>"; };
 		2DA0093B2CF9C6060073CE79 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
+		2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskPresenter.swift; sourceTree = "<group>"; };
+		2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskRouter.swift; sourceTree = "<group>"; };
+		2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskInterractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 				2DA0090D2CF600800073CE79 /* SceneDelegate.swift */,
 				2DA009282CF620360073CE79 /* Extensions */,
 				2DA0091F2CF61E280073CE79 /* TaskListModule */,
+				2DA0093D2CFDCF770073CE79 /* AddNewTaskModule */,
 				2DA0092D2CF87E8F0073CE79 /* Models */,
 				2DA009142CF600810073CE79 /* Assets.xcassets */,
 				2DA0092E2CF87E9F0073CE79 /* Service */,
@@ -138,6 +147,17 @@
 				2DA009292CF63FC30073CE79 /* TaskTableViewCell.swift */,
 			);
 			path = TaskListView;
+			sourceTree = "<group>";
+		};
+		2DA0093D2CFDCF770073CE79 /* AddNewTaskModule */ = {
+			isa = PBXGroup;
+			children = (
+				2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */,
+				2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */,
+				2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */,
+				2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */,
+			);
+			path = AddNewTaskModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,16 +234,20 @@
 				2DA0092C2CF87E290073CE79 /* TodoModel.swift in Sources */,
 				2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */,
 				2DA009322CF8809D0073CE79 /* ErrorsService.swift in Sources */,
+				2DA0093F2CFDCF9A0073CE79 /* NewTaskView.swift in Sources */,
 				2DA009102CF600800073CE79 /* TaskListView.swift in Sources */,
+				2DA009452CFDCFCF0073CE79 /* NewTaskInterractor.swift in Sources */,
 				2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */,
 				2DA009232CF61E500073CE79 /* TaskListInterractor.swift in Sources */,
 				2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */,
 				2DA009342CF883EE0073CE79 /* ParcingService.swift in Sources */,
 				2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */,
+				2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */,
 				2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */,
 				2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */,
 				2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */,
 				2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */,
+				2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */,
 				2DA0093C2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

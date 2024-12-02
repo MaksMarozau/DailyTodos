@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Task list interractor protocols
 protocol TaskListInterractorInputProtocol: AnyObject {
     func getTodos() async
     func filterData(by keyWords: String)
@@ -83,6 +84,7 @@ final class TaskListInterractor {
 }
 
 
+//MARK: - Input protocol implemendation
 extension TaskListInterractor: TaskListInterractorInputProtocol {
     func filterData(by keyWords: String) {
         var filtredTasksArray: [TodoResult.Todo] = []

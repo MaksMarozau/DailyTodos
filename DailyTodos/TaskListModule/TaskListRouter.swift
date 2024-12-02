@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TaskListRouterInputProtocol {
-    
+    func openNewTaskScreen(with taskId: Int)
 }
 
 final class TaskListRouter: TaskListRouterInputProtocol {
@@ -26,6 +26,10 @@ final class TaskListRouter: TaskListRouterInputProtocol {
         view.presenter = presenter
         interractor.presenter = presenter
         
-        navigationController.pushViewController(view, animated: true)
+        navigationController.pushViewController(view, animated: false)
+    }
+    
+    func openNewTaskScreen(with taskId: Int) {
+        let _ = NewTaskRouter(navigationController: navigationController, taskID: taskId)
     }
 }

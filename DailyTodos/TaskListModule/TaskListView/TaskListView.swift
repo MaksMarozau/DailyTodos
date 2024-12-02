@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Task list protocols
 protocol TaskListViewInputProtocol: AnyObject {
     func showTodos(_ todos: [TodoResult.Todo])
     func showError(_ error: Error)
@@ -15,6 +16,7 @@ protocol TaskListViewInputProtocol: AnyObject {
 protocol TaskListViewOutputProtocol: AnyObject {
     func loadData() async
     func filterData(by keyWords: String)
+    func addNewTask(with taskId: Int)
 }
 
 
@@ -23,13 +25,14 @@ final class TaskListView: UIViewController {
 
     //MARK: - Properties of class
     private let headerLabel = UILabel()
-    private let footerView = UIView()
     private let footerLabel = UILabel()
     private let taskCountLabel = UILabel()
     private let searchTextField = UITextField()
     private let tasksTableView = UITableView()
     private let searchButton = UIButton()
     private let voiceButton = UIButton()
+    private let addNewButton = UIButton()
+    private let footerView = UIView()
     private let leftContainerView = UIView()
     private let rightContainerView = UIView()
     private let loadingIndicator = UIActivityIndicatorView()
@@ -37,7 +40,7 @@ final class TaskListView: UIViewController {
     private var todoListArray: [TodoResult.Todo] = []
     var presenter: TaskListViewOutputProtocol?
     
-    //MARK: - Lifecicle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTableView()
@@ -49,17 +52,13 @@ final class TaskListView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        start()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         loadIndicatorAction()
+        start()
     }
 
     //MARK: - Add subviews
     private func addSubviews() {
-        view.addSubviews(headerLabel, taskCountLabel, searchTextField, tasksTableView, footerView, loadingIndicator)
+        view.addSubviews(headerLabel, taskCountLabel, searchTextField, tasksTableView, footerView, addNewButton, loadingIndicator)
         leftContainerView.addSubview(searchButton)
         rightContainerView.addSubview(voiceButton)
         footerView.addSubview(footerLabel)
@@ -123,6 +122,12 @@ final class TaskListView: UIViewController {
         loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         loadingIndicator.heightAnchor.constraint(equalToConstant: 60).isActive = true
         loadingIndicator.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        addNewButton.translatesAutoresizingMaskIntoConstraints = false
+        addNewButton.centerYAnchor.constraint(equalTo: footerLabel.centerYAnchor).isActive = true
+        addNewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        addNewButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.12).isActive = true
+        addNewButton.heightAnchor.constraint(equalTo: addNewButton.widthAnchor).isActive = true
     }
     
     //MARK: - Setup views UI
@@ -140,6 +145,9 @@ final class TaskListView: UIViewController {
         
         voiceButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
         voiceButton.tintColor = UIColor.darkGrayText
+        
+        addNewButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        addNewButton.tintColor = UIColor.gold
         
         searchTextField.backgroundColor = UIColor.frameFill
         searchTextField.borderStyle = .roundedRect
@@ -174,6 +182,7 @@ final class TaskListView: UIViewController {
     private func addTargets() {
         searchButton.addTarget(self, action: #selector(serchButtonTaped), for: .touchUpInside)
         voiceButton.addTarget(self, action: #selector(voiceButtonTaped), for: .touchUpInside)
+        addNewButton.addTarget(self, action: #selector(addNewButtonTaped), for: .touchUpInside)
         searchTextField.addTarget(self, action: #selector(textEditing), for: .editingChanged)
     }
     
@@ -191,6 +200,11 @@ final class TaskListView: UIViewController {
         } else {
             voiceButton.tintColor = UIColor.darkGray
         }
+    }
+    
+    @objc private func addNewButtonTaped() {
+        let number = todoListArray.count + 1
+        presenter?.addNewTask(with: number)
     }
     
     @objc private func textEditing() {

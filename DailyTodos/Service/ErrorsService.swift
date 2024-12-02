@@ -21,3 +21,8 @@ enum CoreDataErrorService: Error {
     case castError
     case loadError
 }
+
+enum InterfaceSaveErrorService: Error {
+    case noUserID
+    case noDescription
+}
