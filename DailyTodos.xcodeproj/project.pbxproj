@@ -28,6 +28,10 @@
 		2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */; };
 		2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */; };
 		2DA009452CFDCFCF0073CE79 /* NewTaskInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */; };
+		2DA009492D0076630073CE79 /* TaskMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009482D0076630073CE79 /* TaskMenuView.swift */; };
+		2DA0094B2D00767A0073CE79 /* TaskMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094A2D00767A0073CE79 /* TaskMenuPresenter.swift */; };
+		2DA0094D2D00768A0073CE79 /* TaskMenuInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094C2D00768A0073CE79 /* TaskMenuInterractor.swift */; };
+		2DA0094F2D0076A30073CE79 /* TaskMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094E2D0076A30073CE79 /* TaskMenuRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskPresenter.swift; sourceTree = "<group>"; };
 		2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskRouter.swift; sourceTree = "<group>"; };
 		2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskInterractor.swift; sourceTree = "<group>"; };
+		2DA009482D0076630073CE79 /* TaskMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuView.swift; sourceTree = "<group>"; };
+		2DA0094A2D00767A0073CE79 /* TaskMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuPresenter.swift; sourceTree = "<group>"; };
+		2DA0094C2D00768A0073CE79 /* TaskMenuInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuInterractor.swift; sourceTree = "<group>"; };
+		2DA0094E2D0076A30073CE79 /* TaskMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,7 @@
 				2DA0090D2CF600800073CE79 /* SceneDelegate.swift */,
 				2DA009282CF620360073CE79 /* Extensions */,
 				2DA0091F2CF61E280073CE79 /* TaskListModule */,
+				2DA009472D0075C20073CE79 /* TaskMenuModule */,
 				2DA0093D2CFDCF770073CE79 /* AddNewTaskModule */,
 				2DA0092D2CF87E8F0073CE79 /* Models */,
 				2DA009142CF600810073CE79 /* Assets.xcassets */,
@@ -158,6 +167,17 @@
 				2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */,
 			);
 			path = AddNewTaskModule;
+			sourceTree = "<group>";
+		};
+		2DA009472D0075C20073CE79 /* TaskMenuModule */ = {
+			isa = PBXGroup;
+			children = (
+				2DA009482D0076630073CE79 /* TaskMenuView.swift */,
+				2DA0094A2D00767A0073CE79 /* TaskMenuPresenter.swift */,
+				2DA0094C2D00768A0073CE79 /* TaskMenuInterractor.swift */,
+				2DA0094E2D0076A30073CE79 /* TaskMenuRouter.swift */,
+			);
+			path = TaskMenuModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,13 +262,17 @@
 				2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */,
 				2DA009342CF883EE0073CE79 /* ParcingService.swift in Sources */,
 				2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */,
+				2DA009492D0076630073CE79 /* TaskMenuView.swift in Sources */,
 				2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */,
+				2DA0094B2D00767A0073CE79 /* TaskMenuPresenter.swift in Sources */,
 				2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */,
 				2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */,
 				2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */,
 				2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */,
+				2DA0094D2D00768A0073CE79 /* TaskMenuInterractor.swift in Sources */,
 				2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */,
 				2DA0093C2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld in Sources */,
+				2DA0094F2D0076A30073CE79 /* TaskMenuRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

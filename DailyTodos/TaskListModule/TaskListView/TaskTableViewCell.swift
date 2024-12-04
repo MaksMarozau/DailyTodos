@@ -36,6 +36,14 @@ final class TaskTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        isCompleted = false
+        title = ""
+        taskID = 0
+        titleLabel.attributedText = nil
+    }
+    
     //MARK: - Add subviews
     private func addSubviews() {
         contentView.addSubview(containerView)

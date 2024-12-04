@@ -24,6 +24,10 @@ final class TaskListPresenter {
 
 
 extension TaskListPresenter: TaskListViewOutputProtocol {
+    func taskDidSelect(_ todo: TodoResult.Todo) {
+        router.openTasksMenu(for: todo)
+    }
+    
     func changeTaskStatus(where status: Bool, taskId: Int) {
         interractor.changeStatusFor(taskId: taskId, currentStatus: status)
     }

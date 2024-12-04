@@ -18,6 +18,7 @@ protocol TaskListViewOutputProtocol: AnyObject {
     func filterData(by keyWords: String)
     func addNewTask(with taskId: Int)
     func changeTaskStatus(where status: Bool, taskId: Int)
+    func taskDidSelect(_ todo: TodoResult.Todo)
 }
 
 
@@ -259,6 +260,11 @@ extension TaskListView: UITableViewDelegate, UITableViewDataSource {
             self.presenter?.changeTaskStatus(where: status, taskId: todoID)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = todoListArray[indexPath.row]
+        presenter?.taskDidSelect(todo)
     }
 }
 
