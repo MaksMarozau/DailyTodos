@@ -17,6 +17,7 @@ protocol TaskListViewOutputProtocol: AnyObject {
     func loadData() async
     func filterData(by keyWords: String)
     func addNewTask(with taskId: Int)
+    func changeTaskStatus(where status: Bool, taskId: Int)
 }
 
 
@@ -253,6 +254,10 @@ extension TaskListView: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         cell.setData(with: todoID, description, userId, status)
+        cell.changeTasksStatusAction = { [weak self] status, todoId in
+            guard let self = self else { return }
+            self.presenter?.changeTaskStatus(where: status, taskId: todoID)
+        }
         return cell
     }
 }
@@ -271,20 +276,34 @@ extension TaskListView: TaskListViewInputProtocol {
     }
     
     func showError(_ error: any Error) {
-        let currentError = error as? NetworkErrorService
-        switch currentError {
-        case .badURL:
-            print("Bad URL")
-        case .badRequest:
-            print("Bad Request")
-        case .badResponce:
-            print("Bad Responce")
-        case .invalidData:
-            print("No Data")
-        case .none:
-            break
+        if let currentError = error as? NetworkErrorService {
+            switch currentError {
+            case .badURL:
+                print("Bad URL")
+            case .badRequest:
+                print("Bad Request")
+            case .badResponce:
+                print("Bad Responce")
+            case .invalidData:
+                print("No Data")
+            }
+        } else if let currentError = error as? CoreDataErrorService {
+            switch currentError {
+            case .initCoreDataError:
+                print("CoreData was not initialized")
+            case .entityError:
+                print("CoreData error: Entity not found")
+            case .saveError:
+                print("CoreData error: Save was failed")
+            case .castError:
+                print("CoreData error: Cast was failed")
+            case .loadError:
+                print("CoreData error: Load was failed")
+            case .objectNotFoundError:
+                print("CoreData error: Object not found")
+            case .updateTaskStatusError:
+                print("CoreData error: Task status updating was faild")
+            }
         }
     }
-    
-    
 }

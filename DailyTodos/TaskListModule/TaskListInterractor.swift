@@ -11,6 +11,7 @@ import Foundation
 protocol TaskListInterractorInputProtocol: AnyObject {
     func getTodos() async
     func filterData(by keyWords: String)
+    func changeStatusFor(taskId: Int, currentStatus: Bool)
 }
 
 protocol TaskListInterractorOutputProtocol: AnyObject {
@@ -72,6 +73,18 @@ final class TaskListInterractor {
         }
     }
     
+    private func updateTasksStatus(taskId: Int, currentStatus: Bool) throws {
+        let newStatus = !currentStatus
+        do {
+            try CoreDataSaveService.shared.updateStatusFor(id: taskId, newStatus: newStatus)
+            if let index = todosOriginArray.firstIndex(where: {$0.id == taskId }) {
+                todosOriginArray[index].completed = newStatus
+            }
+        } catch {
+            throw error
+        }
+    }
+    
     //Other methods
     private func convertData(from data: TodoEntity) -> TodoResult.Todo {
         let todo = TodoResult.Todo(
@@ -86,6 +99,21 @@ final class TaskListInterractor {
 
 //MARK: - Input protocol implemendation
 extension TaskListInterractor: TaskListInterractorInputProtocol {
+    func changeStatusFor(taskId: Int, currentStatus: Bool) {
+        DispatchQueue.global().async {
+            do {
+                try self.updateTasksStatus(taskId: taskId, currentStatus: currentStatus)
+                DispatchQueue.main.async {
+                    self.presenter?.didFetchTodos(with: self.todosOriginArray)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.presenter?.didFailedToFetchTodos(with: error)
+                }
+            }
+        }
+    }
+    
     func filterData(by keyWords: String) {
         var filtredTasksArray: [TodoResult.Todo] = []
         if keyWords.isEmpty {

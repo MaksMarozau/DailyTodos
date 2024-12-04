@@ -24,6 +24,10 @@ final class TaskListPresenter {
 
 
 extension TaskListPresenter: TaskListViewOutputProtocol {
+    func changeTaskStatus(where status: Bool, taskId: Int) {
+        interractor.changeStatusFor(taskId: taskId, currentStatus: status)
+    }
+    
     func addNewTask(with taskId: Int) {
         router.openNewTaskScreen(with: taskId)
     }

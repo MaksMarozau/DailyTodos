@@ -67,16 +67,36 @@ final class CoreDataSaveService {
     }
     
     //Delete data
-    func deleteData(for todo: TodoEntity) -> Result<Void, CoreDataErrorService> {
+    func deleteData(for todo: TodoEntity) throws {
         let managedContext = persistentContainer.viewContext
         
         managedContext.delete(todo)
         do {
             try managedContext.save()
         } catch {
-            return .failure(CoreDataErrorService.saveError)
+            throw CoreDataErrorService.saveError
         }
+    }
+    
+    //Update data
+    func updateStatusFor(id: Int, newStatus: Bool) throws {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<TodoEntity>(entityName: "TodoEntity")
+        fetchRequest.predicate = NSCompoundPredicate(format: "todoID == %d", id)
         
-        return .success(())
+        do {
+            if let object = try managedContext.fetch(fetchRequest).first {
+                object.todoStatus = newStatus
+                do {
+                    try managedContext.save()
+                } catch {
+                    throw CoreDataErrorService.saveError
+                }
+            } else {
+                throw CoreDataErrorService.objectNotFoundError
+            }
+        } catch {
+            throw CoreDataErrorService.updateTaskStatusError
+        }
     }
 }

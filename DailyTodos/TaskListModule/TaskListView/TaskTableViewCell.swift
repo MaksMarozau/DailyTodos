@@ -19,6 +19,9 @@ final class TaskTableViewCell: UITableViewCell {
     
     private var isCompleted = Bool()
     private var title = String()
+    private var taskID = Int()
+    
+    var changeTasksStatusAction: ((_ statusToChange: Bool, _ taskId: Int) -> Void)?
     
     //MARK: - Initializators
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -102,7 +105,7 @@ final class TaskTableViewCell: UITableViewCell {
     
     //MARK: - Button API
     @objc private func changeTaskStatus() {
-        
+        changeTasksStatusAction?(isCompleted, taskID)
     }
     
     //MARK: - Update cell's style
@@ -140,6 +143,7 @@ final class TaskTableViewCell: UITableViewCell {
         title = "Task number: \(taskID)"
         descriptionLabel.text = description
         userIDLabel.text = "user ID: \(userID)"
+        self.taskID = taskID
         
         updateStyleWithCompleationStatus()
     }

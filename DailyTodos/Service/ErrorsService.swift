@@ -20,6 +20,8 @@ enum CoreDataErrorService: Error {
     case saveError
     case castError
     case loadError
+    case objectNotFoundError
+    case updateTaskStatusError
 }
 
 enum InterfaceSaveErrorService: Error {
