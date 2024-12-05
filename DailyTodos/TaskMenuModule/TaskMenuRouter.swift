@@ -9,12 +9,16 @@ import UIKit
 
 protocol TaskMenuRouterInputProtocol: AnyObject {
     func dismissScreen()
+    func openTaskEditionPage(task: TodoResult.Todo)
+    func dismissScreenAfterTaskDelete()
 }
 
 
 final class TaskMenuRouter: TaskMenuRouterInputProtocol {
     private let parentView: UIViewController
     private let currentTodo: TodoResult.Todo
+    var taskEditionPageTransitAction: ((TodoResult.Todo) -> Void)?
+    var taskDeleteSuscessAction: (() -> Void)?
     
     init(parentView: UIViewController, currentTodo: TodoResult.Todo) {
         self.parentView = parentView
@@ -32,6 +36,16 @@ final class TaskMenuRouter: TaskMenuRouterInputProtocol {
     }
     
     func dismissScreen() {
+        parentView.dismiss(animated: false)
+    }
+    
+    func openTaskEditionPage(task: TodoResult.Todo) {
+        taskEditionPageTransitAction?(task)
+        dismissScreen()
+    }
+    
+    func dismissScreenAfterTaskDelete() {
+        taskDeleteSuscessAction?()
         parentView.dismiss(animated: false)
     }
 }

@@ -21,14 +21,28 @@ final class TaskMenuPresenter {
 
 
 extension TaskMenuPresenter: TaskMenuViewOutputProtocol {
+    func deleteCurrentTask(task: TodoResult.Todo) {
+        interractor.deleteTask(task: task)
+    }
+    
+    func editCurrentTask(task: TodoResult.Todo) {
+        router.openTaskEditionPage(task: task)
+    }
+    
     func closePage() {
         router.dismissScreen()
     }
-    
-    
 }
 
 
 extension TaskMenuPresenter: TaskMenuInterractorOutputProtocol {
+    func taskDidDeleted() {
+        router.dismissScreenAfterTaskDelete()
+    }
     
+    func deleteDidFailed(error: Error) {
+        if let error = error as? CoreDataErrorService {
+            view?.showError(error: error)
+        }
+    }
 }

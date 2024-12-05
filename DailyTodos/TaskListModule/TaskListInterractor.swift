@@ -12,6 +12,7 @@ protocol TaskListInterractorInputProtocol: AnyObject {
     func getTodos() async
     func filterData(by keyWords: String)
     func changeStatusFor(taskId: Int, currentStatus: Bool)
+    func reloadData()
 }
 
 protocol TaskListInterractorOutputProtocol: AnyObject {
@@ -99,6 +100,17 @@ final class TaskListInterractor {
 
 //MARK: - Input protocol implemendation
 extension TaskListInterractor: TaskListInterractorInputProtocol {
+    func reloadData() {
+        DispatchQueue.global().async {
+            do {
+                self.todosOriginArray = try self.loadTaskList()
+                self.presenter?.didFetchTodos(with: self.todosOriginArray)
+            } catch {
+                self.presenter?.didFailedToFetchTodos(with: error)
+            }
+        }
+    }
+    
     func changeStatusFor(taskId: Int, currentStatus: Bool) {
         DispatchQueue.global().async {
             do {

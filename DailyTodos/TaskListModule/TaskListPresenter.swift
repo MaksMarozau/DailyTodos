@@ -12,7 +12,7 @@ final class TaskListPresenter {
     
     private weak var view: TaskListViewInputProtocol?
     private let interractor: TaskListInterractorInputProtocol
-    private let router: TaskListRouterInputProtocol
+    private var router: TaskListRouterInputProtocol
     
     init(view: TaskListViewInputProtocol, interractor: TaskListInterractorInputProtocol, router: TaskListRouterInputProtocol) {
         self.view = view
@@ -26,6 +26,10 @@ final class TaskListPresenter {
 extension TaskListPresenter: TaskListViewOutputProtocol {
     func taskDidSelect(_ todo: TodoResult.Todo) {
         router.openTasksMenu(for: todo)
+        router.updateDataAction = { [weak self] in
+            guard let self = self else { return }
+            self.interractor.reloadData()
+        }
     }
     
     func changeTaskStatus(where status: Bool, taskId: Int) {

@@ -9,11 +9,13 @@ import UIKit
 
 //MARK: - Task menu view protocols
 protocol TaskMenuViewInputProtocol: AnyObject {
-    
+    func showError(error: CoreDataErrorService)
 }
 
 protocol TaskMenuViewOutputProtocol: AnyObject {
     func closePage()
+    func editCurrentTask(task: TodoResult.Todo)
+    func deleteCurrentTask(task: TodoResult.Todo)
 }
 
 //MARK: - Final class TaskMenuView
@@ -27,6 +29,10 @@ final class TaskMenuView: UIViewController {
     private let taskTitleLabel = UILabel()
     private let taskDescriptionLabel = UILabel()
     private let taskUserIdLabel = UILabel()
+    private let editTaskButton = UIButton()
+    private let shareTaskButton = UIButton()
+    private let deleteTaskButton = UIButton()
+    private let buttonsStackVew = UIStackView()
     
     private let todo: TodoResult.Todo
     var presenter: TaskMenuViewOutputProtocol?
@@ -47,6 +53,7 @@ final class TaskMenuView: UIViewController {
         addSubviews()
         setConstraintes()
         configureUI()
+        setTargets()
     }
     
     //MARK: - Configurations of Navigation bar
@@ -58,6 +65,8 @@ final class TaskMenuView: UIViewController {
     private func addSubviews() {
         view.addSubviews(blurEffectView, taskInfoContainerView, menuContainerView)
         taskInfoContainerView.addSubviews(taskTitleLabel, taskDescriptionLabel, taskUserIdLabel)
+        menuContainerView.addSubview(buttonsStackVew)
+        buttonsStackVew.addArrangedSubviews(editTaskButton, shareTaskButton, deleteTaskButton)
         blurEffectView.addGestureRecognizer(closePageGesture)
     }
     
@@ -95,6 +104,12 @@ final class TaskMenuView: UIViewController {
         taskDescriptionLabel.bottomAnchor.constraint(equalTo: taskUserIdLabel.topAnchor, constant: -6).isActive = true
         taskDescriptionLabel.leadingAnchor.constraint(equalTo: taskInfoContainerView.leadingAnchor, constant: 16).isActive = true
         taskDescriptionLabel.trailingAnchor.constraint(equalTo: taskInfoContainerView.trailingAnchor, constant: 16).isActive = true
+        
+        buttonsStackVew.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackVew.topAnchor.constraint(equalTo: menuContainerView.topAnchor).isActive = true
+        buttonsStackVew.bottomAnchor.constraint(equalTo: menuContainerView.bottomAnchor).isActive = true
+        buttonsStackVew.leadingAnchor.constraint(equalTo: menuContainerView.leadingAnchor).isActive = true
+        buttonsStackVew.trailingAnchor.constraint(equalTo: menuContainerView.trailingAnchor).isActive = true
     }
     
     //MARK: - Configuration of User Interface
@@ -104,9 +119,12 @@ final class TaskMenuView: UIViewController {
         
         taskInfoContainerView.backgroundColor = UIColor.frameFill
         taskInfoContainerView.layer.cornerRadius = 12
+        taskInfoContainerView.clipsToBounds = true
         
         menuContainerView.backgroundColor = UIColor.lightGray
         menuContainerView.layer.cornerRadius = 12
+        menuContainerView.clipsToBounds = true
+
         
         taskTitleLabel.textAlignment = .left
         taskTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -123,15 +141,88 @@ final class TaskMenuView: UIViewController {
         taskUserIdLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         taskUserIdLabel.textColor = UIColor.darkGrayText
         taskUserIdLabel.text = "User ID: \(todo.userId)"
+        
+        buttonsStackVew.axis = .vertical
+        buttonsStackVew.distribution = .fillEqually
+        buttonsStackVew.backgroundColor = UIColor.frameFill
+        buttonsStackVew.spacing = 1
+        
+        var editButtonConfig = UIButton.Configuration.plain()
+        editButtonConfig.title = "Edit"
+        editButtonConfig.image = UIImage(systemName: "square.and.pencil")?.withTintColor(UIColor.darkGrayText, renderingMode: .alwaysOriginal)
+        editButtonConfig.background.backgroundColor = UIColor.lightGray
+        editButtonConfig.baseForegroundColor = UIColor.darkGrayText
+        editButtonConfig.imagePadding = 165
+        editButtonConfig.imagePlacement = .trailing
+        editButtonConfig.cornerStyle = .fixed
+        editTaskButton.configuration = editButtonConfig
+        
+        var shareButtonConfig = UIButton.Configuration.plain()
+        shareButtonConfig.title = "Share"
+        shareButtonConfig.image = UIImage(systemName: "square.and.arrow.up")?.withTintColor(UIColor.darkGrayText, renderingMode: .alwaysOriginal)
+        shareButtonConfig.background.backgroundColor = UIColor.lightGray
+        shareButtonConfig.baseForegroundColor = UIColor.darkGrayText
+        shareButtonConfig.imagePadding = 150
+        shareButtonConfig.imagePlacement = .trailing
+        shareButtonConfig.cornerStyle = .fixed
+        shareTaskButton.configuration = shareButtonConfig
+        
+        var deleteButtonConfig = UIButton.Configuration.plain()
+        deleteButtonConfig.title = "Delete"
+        deleteButtonConfig.image = UIImage(systemName: "trash")?.withTintColor(UIColor.red, renderingMode: .alwaysOriginal)
+        deleteButtonConfig.background.backgroundColor = UIColor.lightGray
+        deleteButtonConfig.baseForegroundColor = UIColor.red
+        deleteButtonConfig.imagePadding = 145
+        deleteButtonConfig.imagePlacement = .trailing
+        deleteButtonConfig.cornerStyle = .fixed
+        deleteTaskButton.configuration = deleteButtonConfig
+    }
+    
+    //MARK: - Set targets
+    private func setTargets() {
+        editTaskButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        shareTaskButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        deleteTaskButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     //MARK: - Action API
     @objc private func closePageGestureTapped() {
         presenter?.closePage()
     }
+    
+    @objc private func editButtonTapped() {
+        presenter?.editCurrentTask(task: todo)
+    }
+    
+    @objc private func shareButtonTapped() {
+        print("Don't availiable")
+    }
+    
+    @objc private func deleteButtonTapped() {
+        presenter?.deleteCurrentTask(task: todo)
+    }
 }
 
 //MARK: - Implemendation of Input protocol
 extension TaskMenuView: TaskMenuViewInputProtocol {
-    
+    func showError(error: CoreDataErrorService) {
+        switch error {
+        case .initCoreDataError:
+            print("CoreData was not initialized")
+        case .entityError:
+            print("CoreData error: Entity not found")
+        case .saveError:
+            print("CoreData error: Save was failed")
+        case .castError:
+            print("CoreData error: Cast was failed")
+        case .loadError:
+            print("CoreData error: Load was failed")
+        case .objectNotFoundError:
+            print("CoreData error: Object not found")
+        case .updateTaskStatusError:
+            print("CoreData error: Task status updating was failed")
+        case .fetchEntityCountError:
+            print("CoreData error: entity counting was failed")
+        }
+    }
 }

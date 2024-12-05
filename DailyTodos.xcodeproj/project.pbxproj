@@ -24,14 +24,15 @@
 		2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */; };
 		2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */; };
 		2DA0093C2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0093A2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld */; };
-		2DA0093F2CFDCF9A0073CE79 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */; };
-		2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */; };
-		2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */; };
-		2DA009452CFDCFCF0073CE79 /* NewTaskInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */; };
+		2DA0093F2CFDCF9A0073CE79 /* TaskEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0093E2CFDCF9A0073CE79 /* TaskEditingView.swift */; };
+		2DA009412CFDCFA50073CE79 /* TaskEditingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009402CFDCFA50073CE79 /* TaskEditingPresenter.swift */; };
+		2DA009432CFDCFB10073CE79 /* TaskEditingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009422CFDCFB10073CE79 /* TaskEditingRouter.swift */; };
+		2DA009452CFDCFCF0073CE79 /* TaskEditingInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009442CFDCFCF0073CE79 /* TaskEditingInterractor.swift */; };
 		2DA009492D0076630073CE79 /* TaskMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009482D0076630073CE79 /* TaskMenuView.swift */; };
 		2DA0094B2D00767A0073CE79 /* TaskMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094A2D00767A0073CE79 /* TaskMenuPresenter.swift */; };
 		2DA0094D2D00768A0073CE79 /* TaskMenuInterractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094C2D00768A0073CE79 /* TaskMenuInterractor.swift */; };
 		2DA0094F2D0076A30073CE79 /* TaskMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA0094E2D0076A30073CE79 /* TaskMenuRouter.swift */; };
+		2DA009512D01B2030073CE79 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA009502D01B2030073CE79 /* UIStackView + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,14 +55,15 @@
 		2DA009362CF8D45B0073CE79 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		2DA009382CF8E0C30073CE79 /* CoreDataSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveService.swift; sourceTree = "<group>"; };
 		2DA0093B2CF9C6060073CE79 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
-		2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskPresenter.swift; sourceTree = "<group>"; };
-		2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskRouter.swift; sourceTree = "<group>"; };
-		2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskInterractor.swift; sourceTree = "<group>"; };
+		2DA0093E2CFDCF9A0073CE79 /* TaskEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditingView.swift; sourceTree = "<group>"; };
+		2DA009402CFDCFA50073CE79 /* TaskEditingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditingPresenter.swift; sourceTree = "<group>"; };
+		2DA009422CFDCFB10073CE79 /* TaskEditingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditingRouter.swift; sourceTree = "<group>"; };
+		2DA009442CFDCFCF0073CE79 /* TaskEditingInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditingInterractor.swift; sourceTree = "<group>"; };
 		2DA009482D0076630073CE79 /* TaskMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuView.swift; sourceTree = "<group>"; };
 		2DA0094A2D00767A0073CE79 /* TaskMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuPresenter.swift; sourceTree = "<group>"; };
 		2DA0094C2D00768A0073CE79 /* TaskMenuInterractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuInterractor.swift; sourceTree = "<group>"; };
 		2DA0094E2D0076A30073CE79 /* TaskMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuRouter.swift; sourceTree = "<group>"; };
+		2DA009502D01B2030073CE79 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,7 @@
 				2DA009282CF620360073CE79 /* Extensions */,
 				2DA0091F2CF61E280073CE79 /* TaskListModule */,
 				2DA009472D0075C20073CE79 /* TaskMenuModule */,
-				2DA0093D2CFDCF770073CE79 /* AddNewTaskModule */,
+				2DA0093D2CFDCF770073CE79 /* TaskEditingModule */,
 				2DA0092D2CF87E8F0073CE79 /* Models */,
 				2DA009142CF600810073CE79 /* Assets.xcassets */,
 				2DA0092E2CF87E9F0073CE79 /* Service */,
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				2DA009262CF620140073CE79 /* UIView + Extension.swift */,
+				2DA009502D01B2030073CE79 /* UIStackView + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -158,15 +161,15 @@
 			path = TaskListView;
 			sourceTree = "<group>";
 		};
-		2DA0093D2CFDCF770073CE79 /* AddNewTaskModule */ = {
+		2DA0093D2CFDCF770073CE79 /* TaskEditingModule */ = {
 			isa = PBXGroup;
 			children = (
-				2DA0093E2CFDCF9A0073CE79 /* NewTaskView.swift */,
-				2DA009402CFDCFA50073CE79 /* NewTaskPresenter.swift */,
-				2DA009442CFDCFCF0073CE79 /* NewTaskInterractor.swift */,
-				2DA009422CFDCFB10073CE79 /* NewTaskRouter.swift */,
+				2DA0093E2CFDCF9A0073CE79 /* TaskEditingView.swift */,
+				2DA009402CFDCFA50073CE79 /* TaskEditingPresenter.swift */,
+				2DA009442CFDCFCF0073CE79 /* TaskEditingInterractor.swift */,
+				2DA009422CFDCFB10073CE79 /* TaskEditingRouter.swift */,
 			);
-			path = AddNewTaskModule;
+			path = TaskEditingModule;
 			sourceTree = "<group>";
 		};
 		2DA009472D0075C20073CE79 /* TaskMenuModule */ = {
@@ -254,23 +257,24 @@
 				2DA0092C2CF87E290073CE79 /* TodoModel.swift in Sources */,
 				2DA0092A2CF63FC30073CE79 /* TaskTableViewCell.swift in Sources */,
 				2DA009322CF8809D0073CE79 /* ErrorsService.swift in Sources */,
-				2DA0093F2CFDCF9A0073CE79 /* NewTaskView.swift in Sources */,
+				2DA0093F2CFDCF9A0073CE79 /* TaskEditingView.swift in Sources */,
 				2DA009102CF600800073CE79 /* TaskListView.swift in Sources */,
-				2DA009452CFDCFCF0073CE79 /* NewTaskInterractor.swift in Sources */,
+				2DA009452CFDCFCF0073CE79 /* TaskEditingInterractor.swift in Sources */,
 				2DA009252CF61E5C0073CE79 /* TaskListRouter.swift in Sources */,
 				2DA009232CF61E500073CE79 /* TaskListInterractor.swift in Sources */,
 				2DA009212CF61E430073CE79 /* TaskListPresenter.swift in Sources */,
 				2DA009342CF883EE0073CE79 /* ParcingService.swift in Sources */,
 				2DA0090C2CF600800073CE79 /* AppDelegate.swift in Sources */,
 				2DA009492D0076630073CE79 /* TaskMenuView.swift in Sources */,
-				2DA009412CFDCFA50073CE79 /* NewTaskPresenter.swift in Sources */,
+				2DA009412CFDCFA50073CE79 /* TaskEditingPresenter.swift in Sources */,
 				2DA0094B2D00767A0073CE79 /* TaskMenuPresenter.swift in Sources */,
+				2DA009512D01B2030073CE79 /* UIStackView + Extension.swift in Sources */,
 				2DA0090E2CF600800073CE79 /* SceneDelegate.swift in Sources */,
 				2DA009392CF8E0C30073CE79 /* CoreDataSaveService.swift in Sources */,
 				2DA009272CF620140073CE79 /* UIView + Extension.swift in Sources */,
 				2DA009372CF8D45B0073CE79 /* UserDefaultsService.swift in Sources */,
 				2DA0094D2D00768A0073CE79 /* TaskMenuInterractor.swift in Sources */,
-				2DA009432CFDCFB10073CE79 /* NewTaskRouter.swift in Sources */,
+				2DA009432CFDCFB10073CE79 /* TaskEditingRouter.swift in Sources */,
 				2DA0093C2CF9C6060073CE79 /* TodoCoreDataModel.xcdatamodeld in Sources */,
 				2DA0094F2D0076A30073CE79 /* TaskMenuRouter.swift in Sources */,
 			);
@@ -422,7 +426,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,7 +457,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

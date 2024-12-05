@@ -308,7 +308,9 @@ extension TaskListView: TaskListViewInputProtocol {
             case .objectNotFoundError:
                 print("CoreData error: Object not found")
             case .updateTaskStatusError:
-                print("CoreData error: Task status updating was faild")
+                print("CoreData error: Task status updating was failed")
+            case .fetchEntityCountError:
+                print("CoreData error: entity counting was failed")
             }
         }
     }

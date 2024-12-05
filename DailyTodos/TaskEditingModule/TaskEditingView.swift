@@ -1,5 +1,5 @@
 //
-//  NewTaskView.swift
+//  TaskEditingView.swift
 //  DailyTodos
 //
 //  Created by Maks on 2.12.24.
@@ -7,21 +7,21 @@
 
 import UIKit
 
-//MARK: - New task view protocols
-protocol NewTaskViewInputProtocol: AnyObject {
-    func updatePage()
+//MARK: - Task editing view protocols
+protocol TaskEditingViewInputProtocol: AnyObject {
+    func updatePage(with countOfTasksParameter: Int)
     func showError(error: CoreDataErrorService)
     func backlightEmptyField(by error: InterfaceSaveErrorService)
 }
 
-protocol NewTaskViewOutputProtocol: AnyObject {
+protocol TaskEditingViewOutputProtocol: AnyObject {
     func homeTransition()
-    func saveTask(with taskID: Int, _ description: String?, _ userID: Int?)
+    func saveTask(with taskID: Int, _ description: String?, _ userID: Int?, _ isNewStatus: Bool)
 }
 
 
-//MARK: New task view
-final class NewTaskView: UIViewController {
+//MARK: Task editing view
+final class TaskEditingView: UIViewController {
     
     //MARK: - Properties
     private let taskNumberLabel = UILabel()
@@ -30,10 +30,13 @@ final class NewTaskView: UIViewController {
     private let userIDLabel = UILabel()
     private let forUserPicker = UIPickerView()
     
-    private var choisedUserID = Int()
+    private var isNewTask = true
+    var taskDescription = String()
+    var choisedUserID = Int()
     var taskNumber = Int()
     
-    var presenter: NewTaskViewOutputProtocol?
+    
+    var presenter: TaskEditingViewOutputProtocol?
     
     //MARK: - Life cicles
     override func viewDidLoad() {
@@ -50,6 +53,8 @@ final class NewTaskView: UIViewController {
         super.viewWillAppear(animated)
         forUserPicker.layer.cornerRadius = forUserPicker.frame.height / 2
         forUserPicker.clipsToBounds = true
+        
+        uiParametersAddoption()
     }
     
     //MARK: - Setup navigation bar
@@ -123,6 +128,7 @@ final class NewTaskView: UIViewController {
         userIDLabel.textAlignment = .left
         userIDLabel.textColor = UIColor.lightGrayText
         userIDLabel.numberOfLines = 1
+        userIDLabel.text = ""
         
         descriptionTextView.backgroundColor = UIColor.clear
         descriptionTextView.textColor = .darkGrayText
@@ -141,6 +147,18 @@ final class NewTaskView: UIViewController {
         toolbar.sizeToFit()
         toolbar.items = [doneButton]
         descriptionTextView.inputAccessoryView = toolbar
+    }
+    
+    private func uiParametersAddoption() {
+        if !taskDescription.isEmpty {
+            descriptionTextView.text = "\(taskDescription)"
+            descriptionTextView.textColor = UIColor.lightGrayText
+            isNewTask = false
+        }
+        if choisedUserID > 0 {
+            userIDLabel.text = "\(choisedUserID)"
+            isNewTask = false
+        }
     }
     
     //MARK: - Executors
@@ -173,7 +191,7 @@ final class NewTaskView: UIViewController {
     
     @objc private func saveButtonTapped() {
         let description = descriptionTextView.text
-        presenter?.saveTask(with: taskNumber, description, choisedUserID)
+        presenter?.saveTask(with: taskNumber, description, choisedUserID, isNewTask)
     }
     
     //MARK: - Animation backlight
@@ -188,7 +206,7 @@ final class NewTaskView: UIViewController {
 
 
 //MARK: - Picker view protocols implemendation
-extension NewTaskView: UIPickerViewDelegate, UIPickerViewDataSource {
+extension TaskEditingView: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -215,7 +233,7 @@ extension NewTaskView: UIPickerViewDelegate, UIPickerViewDataSource {
 
 
 //MARK: - Text view's protocol implemendation
-extension NewTaskView: UITextViewDelegate {
+extension TaskEditingView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if descriptionTextView.text == "Enter the description" {
             descriptionTextView.text = nil
@@ -235,7 +253,7 @@ extension NewTaskView: UITextViewDelegate {
 
 
 //MARK: - Input protocol implemendation
-extension NewTaskView: NewTaskViewInputProtocol {
+extension TaskEditingView: TaskEditingViewInputProtocol {
     func showError(error: CoreDataErrorService) {
         print(error)
     }
@@ -249,9 +267,9 @@ extension NewTaskView: NewTaskViewInputProtocol {
         }
     }
     
-    func updatePage() {
+    func updatePage(with countOfTasksParameter: Int) {
         choisedUserID = 0
-        taskNumber += 1
+        taskNumber = countOfTasksParameter + 1
         taskNumberLabel.text = "Task number: \(taskNumber)"
         userIDLabel.text = ""
         descriptionTextView.text = "Enter the description"

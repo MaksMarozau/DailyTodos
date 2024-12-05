@@ -10,12 +10,14 @@ import UIKit
 protocol TaskListRouterInputProtocol {
     func openNewTaskScreen(with taskId: Int)
     func openTasksMenu(for task: TodoResult.Todo)
+    var updateDataAction: (() -> Void)? { get set }
 }
 
 final class TaskListRouter: TaskListRouterInputProtocol {
     
     private let navigationController: UINavigationController
     private let view: UIViewController?
+    var updateDataAction: (() -> Void)?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -34,11 +36,22 @@ final class TaskListRouter: TaskListRouterInputProtocol {
     }
     
     func openNewTaskScreen(with taskId: Int) {
-        let _ = NewTaskRouter(navigationController: navigationController, taskID: taskId)
+        let _ = TaskEditingRouter(navigationController: navigationController, taskID: taskId)
     }
     
     func openTasksMenu(for task: TodoResult.Todo) {
         guard let view = view else { return }
-        let _ = TaskMenuRouter(parentView: view, currentTodo: task)
+        let router = TaskMenuRouter(parentView: view, currentTodo: task)
+        router.taskEditionPageTransitAction = { [weak self] task in
+            guard let self = self else { return }
+            self.openTaskEditionScreen(task: task)
+        }
+        router.taskDeleteSuscessAction = { [weak self] in
+            self?.updateDataAction?()
+        }
+    }
+    
+    func openTaskEditionScreen(task: TodoResult.Todo) {
+        let _ = TaskEditingRouter(navigationController: navigationController, taskID: task.id, taskDescription: task.todo, userId: task.userId)
     }
 }

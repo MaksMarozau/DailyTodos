@@ -22,6 +22,7 @@ enum CoreDataErrorService: Error {
     case loadError
     case objectNotFoundError
     case updateTaskStatusError
+    case fetchEntityCountError
 }
 
 enum InterfaceSaveErrorService: Error {
