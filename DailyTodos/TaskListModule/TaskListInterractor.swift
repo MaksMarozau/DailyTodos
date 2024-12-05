@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Task list interractor protocols
-protocol TaskListInterractorInputProtocol: AnyObject {
+protocol TaskListInterractorInputProtocol {
     func getTodos() async
     func filterData(by keyWords: String)
     func changeStatusFor(taskId: Int, currentStatus: Bool)

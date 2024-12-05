@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//MARK: - Task editing interractor protocols
 protocol TaskEditingInterractorInputProtocol: AnyObject {
     func saveTask(with taskID: Int, _ description: String?, _ userID: Int?, _ isNewStatus: Bool)
 }
@@ -19,7 +19,7 @@ protocol TaskEditingInterractorOutputProtocol: AnyObject {
 }
 
 
-//MARK: - New task interractor
+//MARK: - Task editing interractor
 final class TaskEditingInterractor {
     
     //MARK: - Properties

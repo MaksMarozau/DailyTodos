@@ -9,7 +9,6 @@ import Foundation
 
 
 final class TaskListPresenter {
-    
     private weak var view: TaskListViewInputProtocol?
     private let interractor: TaskListInterractorInputProtocol
     private var router: TaskListRouterInputProtocol
@@ -19,7 +18,6 @@ final class TaskListPresenter {
         self.interractor = interractor
         self.router = router
     }
-    
 }
 
 

@@ -7,9 +7,7 @@
 
 import Foundation
 
-
 final class TaskEditingPresenter {
-    
     private weak var view: TaskEditingViewInputProtocol?
     private let interractor: TaskEditingInterractorInputProtocol
     private let router: TaskEditingRouterInputProtocol
@@ -29,7 +27,6 @@ extension TaskEditingPresenter: TaskEditingViewOutputProtocol {
     func homeTransition() {
         router.homeTransition()
     }
-
 }
 
 extension TaskEditingPresenter: TaskEditingInterractorOutputProtocol {

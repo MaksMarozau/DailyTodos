@@ -12,7 +12,7 @@ protocol TaskMenuViewInputProtocol: AnyObject {
     func showError(error: CoreDataErrorService)
 }
 
-protocol TaskMenuViewOutputProtocol: AnyObject {
+protocol TaskMenuViewOutputProtocol {
     func closePage()
     func editCurrentTask(task: TodoResult.Todo)
     func deleteCurrentTask(task: TodoResult.Todo)
@@ -54,11 +54,6 @@ final class TaskMenuView: UIViewController {
         setConstraintes()
         configureUI()
         setTargets()
-    }
-    
-    //MARK: - Configurations of Navigation bar
-    private func configureNavBar() {
-        
     }
     
     //MARK: - Add subviews

@@ -13,7 +13,7 @@ protocol TaskListViewInputProtocol: AnyObject {
     func showError(_ error: Error)
 }
 
-protocol TaskListViewOutputProtocol: AnyObject {
+protocol TaskListViewOutputProtocol {
     func loadData() async
     func filterData(by keyWords: String)
     func addNewTask(with taskId: Int)
@@ -164,6 +164,7 @@ final class TaskListView: UIViewController {
             string: "Search",
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
         )
+        addTextViewToolBar()
         
         footerView.backgroundColor = UIColor.frameFill
         
@@ -178,6 +179,14 @@ final class TaskListView: UIViewController {
         loadingIndicator.style = .large
         loadingIndicator.color = UIColor.lightGrayText
         loadingIndicator.hidesWhenStopped = true
+    }
+    
+    private func addTextViewToolBar() {
+        let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Ready", style: .done, target: self, action: #selector(hideKeyboard))
+        toolbar.sizeToFit()
+        toolbar.items = [doneButton]
+        searchTextField.inputAccessoryView = toolbar
     }
     
     //MARK: - Add targets
@@ -219,6 +228,10 @@ final class TaskListView: UIViewController {
         }
         let keyWords: String = searchTextField.text ?? ""
         presenter?.filterData(by: keyWords)
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
     
     //MARK: - Output

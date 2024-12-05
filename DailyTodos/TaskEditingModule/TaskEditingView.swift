@@ -14,7 +14,7 @@ protocol TaskEditingViewInputProtocol: AnyObject {
     func backlightEmptyField(by error: InterfaceSaveErrorService)
 }
 
-protocol TaskEditingViewOutputProtocol: AnyObject {
+protocol TaskEditingViewOutputProtocol {
     func homeTransition()
     func saveTask(with taskID: Int, _ description: String?, _ userID: Int?, _ isNewStatus: Bool)
 }
@@ -34,7 +34,6 @@ final class TaskEditingView: UIViewController {
     var taskDescription = String()
     var choisedUserID = Int()
     var taskNumber = Int()
-    
     
     var presenter: TaskEditingViewOutputProtocol?
     

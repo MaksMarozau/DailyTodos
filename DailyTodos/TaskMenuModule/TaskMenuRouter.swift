@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TaskMenuRouterInputProtocol: AnyObject {
+protocol TaskMenuRouterInputProtocol {
     func dismissScreen()
     func openTaskEditionPage(task: TodoResult.Todo)
     func dismissScreenAfterTaskDelete()

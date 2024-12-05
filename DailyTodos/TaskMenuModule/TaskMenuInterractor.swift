@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol TaskMenuInterractorInputProtocol: AnyObject {
+protocol TaskMenuInterractorInputProtocol {
     func deleteTask(task: TodoResult.Todo)
 }
 
@@ -45,6 +45,4 @@ extension TaskMenuInterractor: TaskMenuInterractorInputProtocol {
             }
         }
     }
-    
-    
 }
