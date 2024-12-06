@@ -10,7 +10,11 @@ The user interface was created with the UIKit framework, based on a Figma design
 The application includes the following custom UI components with tailored settings: UITableView with custom TableViewCell, UITextField, UITextView, UIStackView, UIPickerView, BlurEffect, custom NavigationBar, UITapGestureRecognizer, etc.
 Extensions for UIView and UIStackView are implemented.
 
-![Simulator Screenshot - iPhone 15 Pro - 2024-12-05 at 20 39 24](https://github.com/user-attachments/assets/27930595-d4a7-40c9-9a68-3d7b18c82dfe)
-![Simulator Screenshot - iPhone 15 Pro - 2024-12-05 at 20 39 35](https://github.com/user-attachments/assets/9cdebc2f-eada-4d65-90bc-002db1c06639)
-![Simulator Screenshot - iPhone 15 Pro - 2024-12-05 at 20 40 23](https://github.com/user-attachments/assets/9718a6fb-d9da-4e1d-b16c-f86cf20d7fbd)
-![Simulator Screenshot - iPhone 15 Pro - 2024-12-05 at 20 40 54](https://github.com/user-attachments/assets/ff6e4037-f741-40e2-8496-31d19ec019df)
+<img src="https://github.com/user-attachments/assets/27930595-d4a7-40c9-9a68-3d7b18c82dfe" alt="Simulator Screenshot 1" width="400"/>
+
+<img src="https://github.com/user-attachments/assets/9cdebc2f-eada-4d65-90bc-002db1c06639" alt="Simulator Screenshot 2" width="400"/>
+
+<img src="https://github.com/user-attachments/assets/9718a6fb-d9da-4e1d-b16c-f86cf20d7fbd" alt="Simulator Screenshot 3" width="400"/>
+
+<img src="https://github.com/user-attachments/assets/ff6e4037-f741-40e2-8496-31d19ec019df" alt="Simulator Screenshot 4" width="400"/>
+
