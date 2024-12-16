@@ -1,5 +1,5 @@
 **************************************************************************************************
-DailyTodos - the IOS-platform application, where user can create self tasks andDailyTodos is an iOS application where users can create and manage personal tasks. This trainee-level project demonstrates proficiency in multithreading, networking, CoreData, UIKit, and the VIPER architecture.
+DailyTodos is an iOS application where users can create and manage personal tasks. This trainee-level project demonstrates proficiency in multithreading, networking, CoreData, UIKit, and the VIPER architecture.
 When the app is launched for the first time, it fetches data from a REST API. For subsequent launches, data is loaded from CoreData. Users can add new tasks, edit or delete existing ones, and search for tasks using keywords in their descriptions. Additionally, users can mark tasks as completed.
 **************************************************************************************************
 The application was built using the VIPER architecture, leveraging multiple modules and their interrelationships. Closures were used for sending data back.
